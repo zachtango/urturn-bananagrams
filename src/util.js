@@ -55,7 +55,7 @@ export const getWinners = (playerCharCounts, players, maxCount) => {
 }
 
 export const LETTERS = [
-  'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
+  'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a',
   'b', 'b', 'b', 'b',
   'c', 'c', 'c', 'c',
   'd', 'd', 'd', 'd',

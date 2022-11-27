@@ -72,11 +72,11 @@ function onPlayerMove(player, move, roomState) {
 
     if( flag && words.has(word) ){
       let letters = [...state.letters]
-
+      
       for(let i = 0; i < letters.length; i++){
-        if(letters[i][1] === AVAILABLE && wCount[letters[i][0]] > 0){
-          letters[i][0] = '';
+        if(letters[i][0] && letters[i][1] === AVAILABLE && wCount[letters[i][0]] > 0){
           wCount[letters[i][0]] -= 1
+          letters[i][0] = '';
         }
       }
 

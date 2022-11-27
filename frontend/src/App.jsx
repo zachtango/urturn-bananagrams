@@ -95,26 +95,27 @@ function App() {
     let t = tuple[1] ? 'shown' : 'hidden'
 
     return (
-      <div className={`letter letter-${t}`}
+      <div className={`letter letter-${t} ${!tuple[0] ? 'empty' : ''}`}
         onClick={() => {
           if(!tuple[1]) makeMove({index: i})
         }}
       >
-        <span>{tuple[1] && tuple[0]}</span>
+        <span>{tuple[1] && tuple[0].toUpperCase()}</span>
       </div>
     )
   })
 
   const playerCards = players.map(player => (
     <div className='player-card'>
-      <span>{player.username} {activePlayers.includes(player.id) ? 'in' : 'out'}</span><br />
+      <h4>{player.username}</h4>
+      <h5>{activePlayers.includes(player.id) ? 'Status: In' : 'Status: Out'}</h5>
       {[...playerIdToWords[player.id]].map(w => <li>{w}</li>)}
     </div>
   ))
 
   return (
     <div className='App'>
-      <h2>{generalStatus}</h2>
+      <h2 className='status'>{generalStatus}</h2>
 
       <div className='chat'>
         <h3>Enter word</h3>
@@ -141,7 +142,7 @@ function App() {
         {playerCards}
       </div>
 
-      <button onClick={() => makeMove({finish: true})}>I can't think of any more words</button>
+      <button onClick={() => makeMove({finish: true})}>Tap out (I can't think of any more words)</button>
     </div>
   )
 }
