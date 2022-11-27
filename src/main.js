@@ -52,11 +52,11 @@ function onPlayerMove(player, move, roomState) {
   if (state.status !== Status.InGame) {
     throw new Error("game is not in progress, can't make move!")
   }
-
+  // console.log(move)
   const {word, index, finish} = move
 
   if(word){
-    console.log("WORD SUBMITTED")
+    // console.log("WORD SUBMITTED")
     
     const lCount = letterCount(state.letters.filter(tuple => tuple[1] === AVAILABLE).map(tuple => tuple[0]))
     const wCount = letterCount(word)
@@ -85,7 +85,7 @@ function onPlayerMove(player, move, roomState) {
       state.playerIdToWords[player.id].push(word)
     }
 
-  } else if(index) {
+  } else if((typeof index) === 'number') {
     if (state.activePlayers[state.currPlayerIndex] !== player.id) {
       throw new Error(`Its not this player's turn: ${player.username}`)
     }
@@ -95,6 +95,7 @@ function onPlayerMove(player, move, roomState) {
   } else if(finish) { // player can't think of any more words    
     
     state.activePlayers = state.activePlayers.filter(id => id !== player.id)
+    state.currPlayerIndex %= state.activePlayers.length
     
     if(state.activePlayers.length === 0){
       // calculate winner
@@ -111,7 +112,7 @@ function onPlayerMove(player, move, roomState) {
 
       state.winners = getWinners(playerCharCounts, players, maxCount)
       state.status = Status.EndGame
-      console.log(state.winners)
+      // console.log(state.winners)
       return {state, finished: true, joinable: false}
     }
   } else{

@@ -8,6 +8,7 @@ import './App.css'
 const getStatusMsg = ({
   status, winners, finished, plrToMove, curPlr,
 }) => {
+  // console.log(plrToMove, curPlr)
   if (finished) {
     let s = ''
     
@@ -87,6 +88,7 @@ function App() {
     } = {},
   } = roomState
   const { players = [], finished } = roomState
+  // console.log(players, status, currPlayerIndex)
   const generalStatus = getStatusMsg({
     status, winners, finished, plrToMove: status === 'inGame' ? players.find(p => p.id === activePlayers[currPlayerIndex]) : null, curPlr,
   })
