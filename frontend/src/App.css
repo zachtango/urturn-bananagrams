@@ -1,0 +1,55 @@
+* {
+    color: white;
+}
+
+input{
+    color: black;
+}
+
+.App{
+    text-align: center;
+}
+
+
+.chat{
+    border: 1px solid white;
+}
+
+.board{
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.letter{
+    border: 1px solid white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-hidden{
+    background-color: rgb(149, 77, 0);
+}
+
+.players-board{
+    border: 1px solid white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.player-card{
+    border: 1px solid white;
+    width: 100px;
+    padding: 20px;
+}
+
+button{
+    border: 1px solid white;
+    background-color: black;
+}

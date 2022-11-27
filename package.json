@@ -1,0 +1,35 @@
+{
+  "name": "@urturn/tictactoe-tutorial",
+  "version": "0.1.7",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "concurrently \"npm run dev:rollup\" \"npm run dev:runner\" \"npm run dev:frontend\"",
+    "dev:runner": "runner --frontend-port 3000",
+    "dev:rollup": "rollup -c -w",
+    "dev:frontend": "cd frontend && cross-env BROWSER=none PORT=3000 npm start",
+    "lint": "echo TODO lint",
+    "lint:fix": "echo TODO lint fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turnbasedgames/urturn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/turnbasedgames/urturn/issues"
+  },
+  "homepage": "https://github.com/turnbasedgames/urturn#readme",
+  "devDependencies": {
+    "@urturn/runner": "0.1.11",
+    "concurrently": "^7.1.0",
+    "cross-env": "^7.0.3",
+    "rollup": "^3.2.3"
+  },
+  "dependencies": {
+    "wordlist-english": "^1.2.1"
+  }
+}
