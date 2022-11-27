@@ -1,7 +1,7 @@
 import { Status, LETTERS, shuffle, letterCount, getWinners } from './util'
-import wordlist from 'wordlist-english'
- 
-const words = new Set(wordlist['english'])
+import wordsRaw from './words.js'
+
+const words = new Set(wordsRaw.split('\n').map(word => word.trim()));
 
 const AVAILABLE = true
 
