@@ -1,12 +1,11 @@
 import { Status, LETTERS, shuffle, letterCount, getWinners } from './util'
-import wordsRaw from './words.js'
+import {wordsRaw} from './words.js'
 
-const words = new Set(wordsRaw.split('\n').map(word => word.trim()));
+const words = new Set(wordsRaw);
 
 const AVAILABLE = true
 
 function onRoomStart() {
-  
   const state = {
     status: Status.PreGame,
     usedWords: [],
