@@ -118,7 +118,10 @@ function App() {
           <input
             ref={inputRef}
             type='text'
-            onChange={e => setWord(e.target.value)}
+            onChange={e => {
+              if(/[A-Za-z]/.test(e.target.value[e.target.value.length - 1]))
+                setWord(e.target.value.toLowerCase())
+            }}
             value={word}
           />
         </form>
