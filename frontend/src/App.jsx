@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import client, { events, makeMove } from '@urturn/client'
 
 import './App.css'
+import { useRef } from 'react'
 
 const getStatusMsg = ({
   status, winners, finished, plrToMove, curPlr,
@@ -23,7 +24,7 @@ const getStatusMsg = ({
     return 'Waiting on for another player to join...'
   } if (status === 'inGame') {
     if (plrToMove.id === curPlr?.id) {
-      return "It's ur turn make a move"
+      return "It's ur turn, click on a square"
     }
     return `Waiting on other player ${plrToMove.username} to make their move...`
   }
@@ -53,27 +54,9 @@ function App() {
 
   const [word, setWord] = useState('')
 
-  // const ESCAPE_KEY = 27
+  const inputRef = useRef(null)
 
-  // const _handleKeyDown = (event, word) => {
-  //     switch( event.keyCode ) {
-  //         case ESCAPE_KEY:
-  //             this.state.activePopover.hide()
-  //             break
-  //         default:
-  //             console.log(word + String.fromCharCode(event.keyCode).toLowerCase())
-  //             setWord(word + String.fromCharCode(event.keyCode).toLowerCase())
-  //             break
-  //     }
-  // }
-  
-  // useEffect(() => {
-  //   document.addEventListener('keydown', e => _handleKeyDown(e, word))
-
-  //   return () => {
-  //     document.removeEventListener('keydown', _handleKeyDown)
-  //   }
-  // }, [])
+  const focusInput = () => inputRef.current.focus()
 
   const [recentErrorMsg, setRecentErrorMsg] = useState(null)
 
@@ -100,6 +83,7 @@ function App() {
       <div className={`letter letter-${t} ${!tuple[0] ? 'empty' : ''}`}
         onClick={() => {
           if(!tuple[1]) makeMove({index: i})
+          focusInput()
         }}
       >
         <span>{tuple[1] && tuple[0].toUpperCase()}</span>
@@ -124,11 +108,15 @@ function App() {
         <form
           onSubmit={e => {
             e.preventDefault()
+            
+            if(word.length < 3) return
+
             setWord('')
             makeMove({word: word})
           }}
         >
-          <input 
+          <input
+            ref={inputRef}
             type='text'
             onChange={e => setWord(e.target.value)}
             value={word}

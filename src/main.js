@@ -55,7 +55,7 @@ function onPlayerMove(player, move, roomState) {
   // console.log(move)
   const {word, index, finish} = move
 
-  if(word){
+  if(word && word.length >= 3){
     // console.log("WORD SUBMITTED")
     
     const lCount = letterCount(state.letters.filter(tuple => tuple[1] === AVAILABLE).map(tuple => tuple[0]))
